@@ -10,15 +10,10 @@ public class TransportManager : MonoBehaviour
     private TransportLineElement lineElementPrefab;
     private TransportLineElement workLineElement;
 
+    [SerializeField]
     private TransportLine transportLine;
 
-    private ItemPlace itemPlace;
-
-    private void CreateItemPlace()
-    {
-        itemPlace = new ItemPlace();
-
-    }
+    private ItemPlace itemPlace;    
 
     public void AddItem(ItemsSO itemsSO)
     {
@@ -27,14 +22,14 @@ public class TransportManager : MonoBehaviour
 
     private void CreateTransportElement()
     {
+        itemPlace = new ItemPlace();
         workLineElement = Instantiate(lineElementPrefab, workPlaceRoot);
-
+        workLineElement.SetItem(itemPlace);
 
     }
    
     public void MoveToLine()
-    {
-        workLineElement.SetItem(itemPlace);
+    {       
         transportLine.AddElements(workLineElement);
     }
 }

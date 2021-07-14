@@ -6,7 +6,9 @@ using UnityEngine;
 [Serializable]
 public class ItemPlace
 {
-   
+
+    public event Action OnChanged = delegate { };
+
     private Dictionary<ItemsSO,int> items = new Dictionary<ItemsSO, int>();
 
     public void AddItem(ItemsSO itemsSO)
@@ -19,6 +21,7 @@ public class ItemPlace
         {
             items.Add(itemsSO, 1);
         }
+        OnChanged();
     }
 
     public Dictionary<ItemsSO, int> Items => items;
