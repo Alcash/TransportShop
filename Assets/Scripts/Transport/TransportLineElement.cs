@@ -18,34 +18,35 @@ public class TransportLineElement : MonoBehaviour
     private Transform view = null;
   
 
-    private int maxInLine = 3;
+    private int maxInLine = 2;
 
     private void Awake()
     {
         if(view)
-            width = view.localScale.x*2;
-            length = view.localScale.z*2;
+            width = view.localScale.x;
+            length = view.localScale.z;
     }
 
     public void SetItem(ItemPlace newItemPlace)
     {
         itemPlace = newItemPlace;
         itemPlace.OnChanged += UpdateView;
+        instViews = new List<GameObject>();
         UpdateView();
     }
 
     private void UpdateView()
-    {
-      
+    {       
         GameObject inst = null;
         int indexInst = 0;
         foreach (var item in itemPlace.Items)
         {
             for (int i = 0; i < item.Value; i++)
-            {
-                if (indexInst > instViews.Count)
-                {
-                    inst = Instantiate(item.Key.Prefab, PosById(indexInst), Quaternion.identity,root );
+            {               
+                if (indexInst >= instViews.Count)
+                {                   
+                    inst = Instantiate(item.Key.Prefab,root );
+                    inst.transform.localPosition = PosById(indexInst);
                     instViews.Add(inst);
                 }
                 indexInst++;
@@ -55,11 +56,9 @@ public class TransportLineElement : MonoBehaviour
 
     private Vector3 PosById(int index)
     {
-        Vector3 result = new Vector3();
-
-        result.x = -width / 2 + (width / maxInLine) * index;
-        result.y = 0;
-        result.z = -length / 2 + (length / maxInLine) * (1 + (int)(index/ maxInLine));
+        Vector3 result = Vector3.zero;
+        result.x = width / 4 - (width / maxInLine) * (index - ((index/maxInLine)* maxInLine)); 
+        result.z = -length / 4 + (length / maxInLine) * ((int)(index/ maxInLine));
         return result;
     }
 
@@ -81,5 +80,5 @@ public class TransportLineElement : MonoBehaviour
     {
         if(itemPlace != null)
          itemPlace.OnChanged -= UpdateView;
-    }
+    }   
 }

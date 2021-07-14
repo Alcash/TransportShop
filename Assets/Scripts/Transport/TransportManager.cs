@@ -13,11 +13,17 @@ public class TransportManager : MonoBehaviour
     [SerializeField]
     private TransportLine transportLine;
 
-    private ItemPlace itemPlace;    
+    private ItemPlace itemPlace;
+
+    [SerializeField]
+    private float waitToNewElement = 0.5f;
+
+    public bool CanMoveToLine { get; protected set; }
 
     public void AddItem(ItemsSO itemsSO)
     {
-        itemPlace.AddItem(itemsSO);
+        if(workLineElement != null)
+          itemPlace.AddItem(itemsSO);
     }
 
     private void CreateTransportElement()
@@ -27,9 +33,27 @@ public class TransportManager : MonoBehaviour
         workLineElement.SetItem(itemPlace);
 
     }
-   
-    public void MoveToLine()
-    {       
-        transportLine.AddElements(workLineElement);
+
+    private void Start()
+    {
+        CreateTransportElement();
     }
+
+    public void MoveToLine()
+    {
+        if (workLineElement)
+        {
+            transportLine.AddElements(workLineElement);
+            workLineElement = null;
+            Invoke(nameof(CreateTransportElement), 0.1f);
+            Invoke(nameof(CanMove), waitToNewElement);
+        }
+    }
+
+    private void CanMove()
+    {
+        CanMoveToLine = true;
+    }
+
+    
 }
