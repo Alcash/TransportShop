@@ -39,16 +39,18 @@ public class TransportManager : MonoBehaviour
 
     private void CreateTransportElement()
     {
-       
-        itemPlace = new ItemPlace();
-        workLineElement = Instantiate(lineElementPrefab, workPlaceRoot);
-        workLineElement.SetItem(itemPlace);
-        itemOnElementCount = 0;
-        CanAddItem = true;
-        OnChangeStatus();
+        if (enabled)
+        {
+            itemPlace = new ItemPlace();
+            workLineElement = Instantiate(lineElementPrefab, workPlaceRoot);
+            workLineElement.SetItem(itemPlace);
+            itemOnElementCount = 0;
+            CanAddItem = true;
+            OnChangeStatus();
+        }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         CreateTransportElement();
     }

@@ -1,18 +1,36 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameStateManger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //NOTE —делать не по типу а по имени?
+    private Dictionary<Type, BaseState> states;
+
+    private BaseState currentState;
+
+    private void Start()
     {
-        
+
+        states = new Dictionary<Type, BaseState>();
+        var tempStates = transform.GetComponentsInChildren<BaseState>();
+
+        for (int i = 0; i < tempStates.Length; i++)
+        {            
+            states.Add(tempStates[i].GetType(), tempStates[i]);
+        }
+
+        StartState(typeof(GamePlayState));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartState(Type type)
     {
-        
+        if (currentState)
+        {
+            currentState.EndState();
+        }
+        currentState = states[type];
+        currentState.StartState();
+       
     }
 }
