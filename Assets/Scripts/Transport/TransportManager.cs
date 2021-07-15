@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TransportManager : MonoBehaviour
 {
-    public event Action OnChangeStatus;
+    public event Action OnChangeStatus = delegate { };
 
     [SerializeField]
     private Transform workPlaceRoot;

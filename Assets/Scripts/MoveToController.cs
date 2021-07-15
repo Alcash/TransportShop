@@ -7,7 +7,7 @@ public class MoveToController : MonoBehaviour, IUpdatable
 {
     public event Action OnEndMove = delegate { };
     private Action callBackAction = null;
-    private Vector3 targetPoint = Vector3.zero;    
+    private Vector3 targetPoint = Vector3.zero;
     private float moveTime = 5;
     private float moveSpeed;
 
@@ -21,12 +21,27 @@ public class MoveToController : MonoBehaviour, IUpdatable
         UpdateManager.RemoveUpdateObject(this);
     }
 
+    public void TurnTo(Vector3 point)
+    {
+        var direction = transform.InverseTransformDirection(point - transform.position);
+
+        direction= Vector3.ProjectOnPlane(direction, Vector3.up);
+
+        transform.LookAt(direction);
+    }
+
     public void SetTarget(Transform point, float moveTime, Action callBack = null)
     {
-        targetPoint = point.position;
-        moveSpeed = (transform.position - point.position).magnitude / moveTime;
+        SetTarget(point.position, moveTime, callBack);      
+    }
+
+    public void SetTarget(Vector3 point, float moveTime, Action callBack = null)
+    {
+        targetPoint = point;
+        moveSpeed = (transform.position - point).magnitude / moveTime;
         callBackAction = callBack;
     }
+
 
     void IUpdatable.DoUpdate(float delta)
     {

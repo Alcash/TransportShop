@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TransportLine : MonoBehaviour
-{
-    private List<TransportLineElement> transportLineElements = new List<TransportLineElement>();
+{    
+    public List<TransportLineElement> TransportLineElements { get; private set; } = new List<TransportLineElement>();
 
     [SerializeField]
     private Transform startPoint;
@@ -20,7 +20,7 @@ public class TransportLine : MonoBehaviour
     public void AddElements(TransportLineElement transportLineElement)
     {
         transportLineElement.transform.SetParent(transform);
-        transportLineElements.Add(transportLineElement);
+        TransportLineElements.Add(transportLineElement);
 
         transportLineElement.transform.position = startPoint.position;
 
@@ -30,7 +30,9 @@ public class TransportLine : MonoBehaviour
 
     public void RemoveElemets(TransportLineElement transportLineElement)
     {
-        transportLineElements.Remove(transportLineElement);
+        TransportLineElements.Remove(transportLineElement);
+        var move = transportLineElement.GetComponent<MoveToController>();
+        Destroy(move);
     }
 
     private void Awake()
@@ -40,16 +42,16 @@ public class TransportLine : MonoBehaviour
 
     public void ClearLine()
     {
-        foreach (var item in transportLineElements.ToArray())
+        foreach (var item in TransportLineElements.ToArray())
         {
             Destroy(item.gameObject);
         }
-        transportLineElements.Clear();
+        TransportLineElements.Clear();
     }
 
     private void EndMove(TransportLineElement item)
     {
-        transportLineElements.Remove(item);
+        TransportLineElements.Remove(item);
         trashBin.MoveToTrash(item);
 
     }

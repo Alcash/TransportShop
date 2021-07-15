@@ -24,5 +24,5 @@ public class ItemPlace
         OnChanged();
     }
 
-    public Dictionary<ItemsSO, int> Items => items;
+    public Dictionary<ItemsSO, int> Items => items;   
 }

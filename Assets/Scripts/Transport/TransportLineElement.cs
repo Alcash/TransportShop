@@ -65,12 +65,18 @@ public class TransportLineElement : MonoBehaviour
 
     public bool Compare(ItemPlace compareItemPlace)
     {
-        bool result = true;
-
-        result &= compareItemPlace.Items.Count == itemPlace.Items.Count;        
+        bool result = true;     
+        result &= compareItemPlace.Items.Count == itemPlace.Items.Count;    
         foreach (var item1 in compareItemPlace.Items)
         {
-            result &= itemPlace.Items[item1.Key] == item1.Value;          
+            if(itemPlace.Items.ContainsKey(item1.Key) == false)
+            {
+                return false;
+            }
+
+            Debug.Log($"{item1.Key} : elem: {itemPlace.Items[item1.Key]}; elem2 : {item1.Value}");
+
+            result &= itemPlace.Items[item1.Key] == item1.Value;
         }     
 
         return result;
