@@ -40,6 +40,15 @@ public class TransportLine : MonoBehaviour
         MoveElements(Time.deltaTime);
     }
 
+    public void ClearLine()
+    {
+        foreach (var item in transportLineElements.ToArray())
+        {
+            Destroy(item.gameObject);
+        }
+        transportLineElements.Clear();
+    }
+
     private void MoveElements(float delta)
     {
         foreach (var item in transportLineElements.ToArray())

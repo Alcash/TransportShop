@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrashBinController : MonoBehaviour
+public class TrashBinController : MonoBehaviour, IScoreSendable
 {
 
     [SerializeField]
@@ -11,6 +12,10 @@ public class TrashBinController : MonoBehaviour
     private GameObject trash;
 
     private Coroutine coroutine;
+
+    public event Action<int> OnChangeScore = delegate{};
+
+    private int scorePenalty =-1; 
 
     public void MoveToTrash(TransportLineElement transportLineElement)
     {       
@@ -27,7 +32,7 @@ public class TrashBinController : MonoBehaviour
     private IEnumerator WaitToDestoy()
     {
         yield return new WaitForSeconds(waitToDestoyTime);
-
+        OnChangeScore(scorePenalty);
         Destroy(trash);
     }
 
@@ -38,7 +43,10 @@ public class TrashBinController : MonoBehaviour
 
     private void MoveElements(float delta)
     {
-        if(trash)
-            trash.transform.position = Vector3.MoveTowards(trash.transform.position, transform.position, moveSpeed * delta);        
+        if (trash)
+        {
+            trash.transform.position = Vector3.MoveTowards(trash.transform.position, transform.position, moveSpeed * delta);
+           
+        }
     }
 }

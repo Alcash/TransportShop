@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GamePlayState playState;
+
+    [SerializeField]
+    private Text text;
+
+    private void Awake()
     {
-        
+        playState = FindObjectOfType<GamePlayState>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ChangeScoreHandler()
     {
-        
+        if(text)
+         text.text = playState.ScoreCount.ToString();
+    }
+
+    private void OnEnable()
+    {
+        if(playState)
+            playState.OnChangeScore += ChangeScoreHandler;
+        ChangeScoreHandler();
+    }
+
+    private void OnDisable()
+    {
+        if (playState)
+            playState.OnChangeScore -= ChangeScoreHandler;
     }
 }

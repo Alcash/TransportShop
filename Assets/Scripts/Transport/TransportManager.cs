@@ -52,7 +52,7 @@ public class TransportManager : MonoBehaviour
 
     private void OnEnable()
     {
-        CreateTransportElement();
+        CreateTransportElement();        
     }
 
     public void MoveToLine()
@@ -75,5 +75,8 @@ public class TransportManager : MonoBehaviour
         OnChangeStatus();
     }
 
-    
+    private void OnDisable()
+    {
+        transportLine.ClearLine();
+    }
 }
