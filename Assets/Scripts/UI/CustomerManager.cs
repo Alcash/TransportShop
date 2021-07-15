@@ -70,17 +70,16 @@ public class CustomerManager : MonoBehaviour
             {
                 return;
             }
-
+            
             int rndLine = 0;
-            //TODO ищется рандомный элемент с пустым значение покупателя
+            //NOTE ищется рандомный элемент с пустым значение покупателя
             do
             {
-                rndLine = Random.Range(0, customerPoint.Count);
+                rndLine = Random.Range(0, customerPoint.Count);           
             }
             while (customerPoint.ElementAt(rndLine).Value != null) ;
-
-            
-            customerPoint[poointInLine[rndLine]] = customers[indexCustomer];
+           
+            customerPoint[poointInLine[rndLine]] = customers[indexCustomer];          
             customers[indexCustomer].SetPoint(poointInLine[rndLine]);
             customers[indexCustomer].gameObject.SetActive(true);
 
@@ -93,8 +92,9 @@ public class CustomerManager : MonoBehaviour
         
         var lineKey = customerPoint.FirstOrDefault(x => x.Value == customerController).Key;
         customerPoint[lineKey] = null;
+       
         customerController.gameObject.SetActive(false);
-
+        Debug.Log($"customerController {customerController.gameObject.activeSelf}");
         Invoke(nameof(LetsGoCustomer), Random.Range(timerMin, timerMax));
     }
 
