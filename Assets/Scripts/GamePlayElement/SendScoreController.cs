@@ -22,7 +22,7 @@ public class SendScoreController : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnDisable ()
     {
         if (scoreSendable != null)
         {

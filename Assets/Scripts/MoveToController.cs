@@ -23,11 +23,13 @@ public class MoveToController : MonoBehaviour, IUpdatable
 
     public void TurnTo(Vector3 point)
     {
-        var direction = transform.InverseTransformDirection(point - transform.position);
+        var direction = point - transform.position;
 
         direction= Vector3.ProjectOnPlane(direction, Vector3.up);
 
         transform.LookAt(direction);
+
+        Debug.DrawLine(transform.position, transform.position + direction, Color.red,2);
     }
 
     public void SetTarget(Transform point, float moveTime, Action callBack = null)

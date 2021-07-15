@@ -13,6 +13,7 @@ public class CustomerWaitView : MonoBehaviour
     private void OnEnable()
     {
         customerController.OnChangeWaitStatus += UpdateView;
+        UpdateView();
     }
 
     private void UpdateView()

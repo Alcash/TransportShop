@@ -67,11 +67,11 @@ public class CustomerController : MonoBehaviour, IUpdatable, IScoreSendable
     public void SetPoint(Transform point)
     {
         targetPoint = point.position;
-        moveController.SetTarget(point, moveTime, OnEndMoveHandler);
+        moveController.SetTarget(targetPoint, moveTime, OnEndMoveHandler);
         moveController.enabled = true;
-        moveController.TurnTo(point.position);       
+        moveController.TurnTo(targetPoint);       
         ItemPlace = wishGenerator.GetShopBasket(minElementtCount, maxElementCount);
-
+        StatusWait = 1;
         foreach (Transform item in rootHand)
         {
             Destroy(item.gameObject);

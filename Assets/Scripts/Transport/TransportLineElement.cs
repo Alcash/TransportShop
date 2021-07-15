@@ -72,9 +72,7 @@ public class TransportLineElement : MonoBehaviour
             if(itemPlace.Items.ContainsKey(item1.Key) == false)
             {
                 return false;
-            }
-
-            Debug.Log($"{item1.Key} : elem: {itemPlace.Items[item1.Key]}; elem2 : {item1.Value}");
+            }     
 
             result &= itemPlace.Items[item1.Key] == item1.Value;
         }     

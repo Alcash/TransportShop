@@ -30,8 +30,14 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void OnDisable()
-    {
-
+    {       
+        foreach (var item in poointInLine)
+        {
+            if(customerPoint[item] != null)
+                 customerPoint[item].gameObject.SetActive(false);
+            customerPoint[item] = null;
+        }
+       
     }
 
     private void SpawnCustomers()
@@ -79,7 +85,8 @@ public class CustomerManager : MonoBehaviour
             }
             while (customerPoint.ElementAt(rndLine).Value != null) ;
            
-            customerPoint[poointInLine[rndLine]] = customers[indexCustomer];          
+            customerPoint[poointInLine[rndLine]] = customers[indexCustomer];
+            customers[indexCustomer].transform.position = transform.position;
             customers[indexCustomer].SetPoint(poointInLine[rndLine]);
             customers[indexCustomer].gameObject.SetActive(true);
 
@@ -91,10 +98,8 @@ public class CustomerManager : MonoBehaviour
     {
         
         var lineKey = customerPoint.FirstOrDefault(x => x.Value == customerController).Key;
-        customerPoint[lineKey] = null;
-       
-        customerController.gameObject.SetActive(false);
-        Debug.Log($"customerController {customerController.gameObject.activeSelf}");
+        customerPoint[lineKey] = null;       
+        customerController.gameObject.SetActive(false);      
         Invoke(nameof(LetsGoCustomer), Random.Range(timerMin, timerMax));
     }
 
