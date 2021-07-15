@@ -23,6 +23,9 @@ public class TransportLine : MonoBehaviour
         transportLineElements.Add(transportLineElement);
 
         transportLineElement.transform.position = startPoint.position;
+
+        var move = transportLineElement.gameObject.AddComponent<MoveToController>();
+        move.SetTarget(endPoint, moveTime, delegate { EndMove(transportLineElement); });
     }
 
     public void RemoveElemets(TransportLineElement transportLineElement)
@@ -33,12 +36,7 @@ public class TransportLine : MonoBehaviour
     private void Awake()
     {
         moveSpeed = (startPoint.position - endPoint.position).magnitude / moveTime;
-    }
-
-    private void Update()
-    {
-        MoveElements(Time.deltaTime);
-    }
+    }   
 
     public void ClearLine()
     {
@@ -49,18 +47,13 @@ public class TransportLine : MonoBehaviour
         transportLineElements.Clear();
     }
 
-    private void MoveElements(float delta)
+    private void EndMove(TransportLineElement item)
     {
-        foreach (var item in transportLineElements.ToArray())
-        {
-            item.transform.position = Vector3.MoveTowards(item.transform.position, endPoint.position, moveSpeed* delta);
+        transportLineElements.Remove(item);
+        trashBin.MoveToTrash(item);
 
-            if(item.transform.position == endPoint.position)
-            {
-                transportLineElements.Remove(item);
-                trashBin.MoveToTrash(item);
-            }
-        }
     }
+
+   
       
 }
