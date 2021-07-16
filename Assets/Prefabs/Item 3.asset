@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e7c3cb593e5bc45ba9d68bfda33db9, type: 3}
+  m_Name: Item 3
+  m_EditorClassIdentifier: 
+  nameId: parallelepiped
+  sprite: {fileID: 21300000, guid: 37693dce1003c6e48a518947af49cfa6, type: 3}
+  prefab: {fileID: 4256900294885493612, guid: a4b2540ec04095a48841e329330e3f44, type: 3}
