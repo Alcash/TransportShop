@@ -569,8 +569,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323360279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.54}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -0.1331, y: -0, z: -2.2137}
+  m_LocalScale: {x: 2.6754382, y: 2, z: 1.5348488}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -610,6 +610,8 @@ MonoBehaviour:
   - {fileID: 627339178}
   - {fileID: 2009555748}
   - {fileID: 515673259}
+  timerMin: 5
+  timerMax: 6
 --- !u!4 &433560728
 Transform:
   m_ObjectHideFlags: 0
@@ -618,7 +620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433560726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.97}
+  m_LocalPosition: {x: 0, y: 0, z: -6.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1598,8 +1600,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 10
-  field of view: 50
+  far clip plane: 11.61
+  field of view: 48.000553
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1624,13 +1626,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.00029462867, y: -0.94671834, z: 0.32206166, w: -0.0007651413}
-  m_LocalPosition: {x: 0.53, y: 2.34, z: 2.95}
+  m_LocalRotation: {x: -0.0003569399, y: -0.9168174, z: 0.39930576, w: -0.0007381335}
+  m_LocalPosition: {x: 0.53, y: 3.4, z: 2.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 37.575, y: 179.909, z: 0.005}
+  m_LocalEulerAnglesHint: {x: 47.07, y: 179.91, z: 0.005}
 --- !u!1 &1003208245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +1828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 314950924}
   endPoint: {fileID: 133713219}
-  moveTime: 5
+  moveTime: 3
   trashBin: {fileID: 1750348778}
 --- !u!4 &1179992254
 Transform:
@@ -2301,7 +2303,7 @@ MonoBehaviour:
   lineElementPrefab: {fileID: 6716352823873129247, guid: f3f2b253243ab2f4eb05a7c549dd2622,
     type: 3}
   transportLine: {fileID: 1179992253}
-  waitToNewElement: 0.5
+  waitToNewElement: 0.7
   maxItemOnElement: 3
 --- !u!4 &1602580727
 Transform:
@@ -2555,6 +2557,7 @@ MonoBehaviour:
   stateComponents:
   - {fileID: 1602580726}
   - {fileID: 1179992253}
+  - {fileID: 433560727}
   timerMax: 60
 --- !u!1 &1718450222
 GameObject:

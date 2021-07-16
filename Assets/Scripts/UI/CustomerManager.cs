@@ -12,7 +12,9 @@ public class CustomerManager : MonoBehaviour, IUpdatable
     [SerializeField]
     private Transform[] poointInLine;
 
+    [SerializeField]
     private float timerMin = 5;
+    [SerializeField]
     private float timerMax = 6;
 
     private CustomerController[] customers;

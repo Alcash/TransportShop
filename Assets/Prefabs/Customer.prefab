@@ -795,7 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4e14bebbac2aa45b3c01a67ef02b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTime: 5
+  moveTime: 2
   rootHand: {fileID: 6446968959191335841}
   maxWait: 10
   minWait: 5
