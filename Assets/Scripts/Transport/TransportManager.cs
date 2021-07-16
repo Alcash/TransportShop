@@ -41,6 +41,8 @@ public class TransportManager : MonoBehaviour
     {
         if (enabled)
         {
+           
+
             itemPlace = new ItemPlace();
             workLineElement = Instantiate(lineElementPrefab, workPlaceRoot);
             workLineElement.SetItem(itemPlace);
@@ -78,5 +80,11 @@ public class TransportManager : MonoBehaviour
     private void OnDisable()
     {
         transportLine.ClearLine();
+        if (workLineElement != null)
+        {
+            Destroy(workLineElement.gameObject);
+        }
+        workLineElement = null;
+        CanMoveToLine = true;
     }
 }

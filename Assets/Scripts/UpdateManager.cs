@@ -50,12 +50,12 @@ public class UpdateManager : MonoBehaviour
         updatables.Remove(updatable);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         foreach (var item in updatables.ToArray())
         {
             if (item != null)
-                item.DoUpdate(Time.deltaTime);
+                item.DoUpdate(Time.fixedDeltaTime);
         }
     }
 }
